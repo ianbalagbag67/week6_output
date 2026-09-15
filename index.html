@@ -263,14 +263,37 @@
                 throw new Error("GitHub user not found.");
             }
 
-            const data = await response.json();
+    const data = await response.json();
+        localStorage.setItem("githubUsername", data.login);
 
-            localStorage.setItem("githubUsername", data.login);
+                alert(`Welcome, ${data.login}!`);
 
-            alert(`Welcome, ${data.login}!`);
+                const profile = document.createElement("div");
 
-            welcomeScreen.style.display = "none";
+                profile.className = "text-center mt-3";
 
+                profile.innerHTML = `
+                    <img src="${data.avatar_url}" 
+                        alt="GitHub Avatar"
+                        width="70"
+                        height="70"
+                        style="border-radius: 50%;">
+
+                    <h5 class="mt-2">${data.name || data.login}</h5>
+
+                    <p class="mb-1">@${data.login}</p>
+
+                    <p class="mb-1">
+                        Followers: ${data.followers}
+                    </p>
+
+               <p>
+            Public Repositories: ${data.public_repos}
+       </p>
+    `;
+
+loginForm.appendChild(profile);
+            
         } catch (error) {
             alert(error.message);
         }
