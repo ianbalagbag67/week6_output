@@ -292,8 +292,21 @@
        </p>
     `;
 
-loginForm.appendChild(profile);
-            
+    loginForm.appendChild(profile);
+
+const continueButton = document.createElement("button");
+
+continueButton.textContent = "Continue";
+
+continueButton.className = "btn btn-success mt-2";
+
+continueButton.addEventListener("click", function () {
+
+    welcomeScreen.style.display = "none";
+
+});
+
+loginForm.appendChild(continueButton);            
         } catch (error) {
             alert(error.message);
         }
