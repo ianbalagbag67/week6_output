@@ -43,6 +43,30 @@
     githubLoginBtn.addEventListener("click", function () {
         loginForm.style.display = "block";
         githubLoginBtn.style.display = "none";
+        document.getElementById("submitGithubBtn").addEventListener("click", async function () {
+
+    const username = document.getElementById("githubUsername").value.trim();
+
+    if (username === "") {
+        alert("Please enter your GitHub username.");
+        return;
+    }
+
+   try {
+         const response = await fetch(
+            `https://api.github.com/users/${encodeURIComponent(username)}`
+                );
+                    if (!response.ok) {
+                        throw new Error("GitHub user not found.");
+                }
+                    const data = await response.json();
+                    localStorage.setItem("githubUsername", data.login);
+                    alert(`Welcome, ${data.login}!`);
+                    welcomeScreen.style.display = "none";
+            } catch (error) {
+            alert(error.message);
+        }
+});
     });
     guestBtn.addEventListener("click", function () {
         welcomeScreen.style.display = "none";
