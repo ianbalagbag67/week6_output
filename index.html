@@ -37,6 +37,10 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script>
     const welcomeScreen = document.getElementById("welcomeScreen");
+    const savedUsername = localStorage.getItem("githubUsername");
+        if (savedUsername) {
+        welcomeScreen.style.display = "none";
+}
     const githubLoginBtn = document.getElementById("githubLoginBtn");
     const guestBtn = document.getElementById("guestBtn");
     const loginForm = document.getElementById("loginForm");
