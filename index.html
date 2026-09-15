@@ -10,7 +10,6 @@
     body {
             margin: 0;
     }
-
         #welcomeScreen {
             position: fixed;
             top: 0;
@@ -26,19 +25,29 @@
             text-align: center;
             z-index: 9999;
     }
-
         #welcomeScreen button {
             width: 220px;
             margin-top: 10px;
     }
-
         #loginForm {
             width: 300px;
     }
-
 </style>
 </head>
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+    const welcomeScreen = document.getElementById("welcomeScreen");
+    const githubLoginBtn = document.getElementById("githubLoginBtn");
+    const guestBtn = document.getElementById("guestBtn");
+    const loginForm = document.getElementById("loginForm");
+    githubLoginBtn.addEventListener("click", function () {
+        loginForm.style.display = "block";
+        githubLoginBtn.style.display = "none";
+    });
+    guestBtn.addEventListener("click", function () {
+        welcomeScreen.style.display = "none";
+    });
+</script>
 <body>
 
     <nav class="navbar navbar-dark bg-dark">
