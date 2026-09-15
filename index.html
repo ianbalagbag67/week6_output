@@ -150,20 +150,92 @@
     </div>
 
 </div>
-    <nav class="navbar navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">Web Systems Laboratory</a>
 
-        <div>
-            <a class="text-white me-3" href="index.html">Home</a>
-            <a class="text-white me-3" href="activities.html">Activities</a>
-            <a class="text-white me-3" href="#about">About</a>
-            <button id="logoutBtn" class="btn btn-outline-light btn-sm">
-            Logout
-        </button>    
+<div id="homeContent">
+
+<nav class="navbar navbar-dark bg-dark">
+
+    <div class="container">
+        
+            <a class="navbar-brand fw-bold" href="index.html">
+
+                Web Systems Laboratory
+
+            </a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div
+                class="collapse navbar-collapse"
+                id="navbarNav">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link active"
+                            href="index.html">
+
+                            Home
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="activities.html">
+
+                            Activities
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="#about">
+
+                            About
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item ms-lg-2">
+
+                        <button
+                            id="logoutBtn"
+                            class="btn btn-outline-light btn-sm mt-1">
+
+                            Logout
+
+                        </button>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
         </div>
-    </div>
-</nav>
+
+    </nav>
+
+</header>
 <main>
     <section class="py-5 text-center">
     <div class="container">
@@ -292,119 +364,193 @@
     </p>
 
 </footer>
-        
-       <script src="js/bootstrap.bundle.min.js"></script>
+
+</div>
+
+<script src="js/bootstrap.bundle.min.js"></script>
 <script>
 
-    const welcomeScreen = document.getElementById("welcomeScreen");
-    const savedUsername = localStorage.getItem("githubUsername");
+    // Check if a GitHub username was already saved
+window.onload = function () {
+
+    const savedUsername =
+        localStorage.getItem("githubUsername");
 
     if (savedUsername) {
 
-    welcomeScreen.style.display = "none";
+        document.getElementById("startButtons").style.display = "none";
 
-    const welcomeMessage = document.createElement("p");
+        document.getElementById("savedUser").style.display = "block";
 
-    welcomeMessage.textContent = `Welcome back, @${savedUsername}!`;
+        document.getElementById("savedMessage").textContent =
+            "Welcome back, @" + savedUsername + "!";
 
-    welcomeMessage.className = "text-center mt-3";
+    }
 
-    document.querySelector("main").prepend(welcomeMessage);
+};
+
+
+// Show GitHub login
+function showLogin() {
+
+    document.getElementById("startButtons").style.display = "none";
+
+    document.getElementById("loginForm").style.display = "block";
 
 }
 
-    const githubLoginBtn = document.getElementById("githubLoginBtn");
-    const guestBtn = document.getElementById("guestBtn");
-    const loginForm = document.getElementById("loginForm");
 
-    githubLoginBtn.addEventListener("click", function () {
-        loginForm.style.display = "block";
-        githubLoginBtn.style.display = "none";
-    });
+// Go back to the first screen
+function goBack() {
 
-    guestBtn.addEventListener("click", function () {
-        welcomeScreen.style.display = "none";
-    });
+    document.getElementById("loginForm").style.display = "none";
 
-    document.getElementById("submitGithubBtn").addEventListener("click", async function () {
-        const username = document.getElementById("githubUsername").value.trim();
+    document.getElementById("startButtons").style.display = "block";
 
-        if (username === "") {
-            alert("Please enter your GitHub username.");
-            return;
-        }
+    document.getElementById("githubInfo").innerHTML = "";
 
-        try {
-            const response = await fetch(
-                `https://api.github.com/users/${encodeURIComponent(username)}`
-            );
+}
 
-            if (!response.ok) {
-                throw new Error("GitHub user not found.");
-            }
 
-    const data = await response.json();
-        localStorage.setItem("githubUsername", data.login);
+// Login using GitHub API
+async function loginWithGitHub() {
 
-                alert(`Welcome, ${data.login}!`);
+    const username =
+        document.getElementById("username").value.trim();
 
-                const profile = document.createElement("div");
+    const result =
+        document.getElementById("githubInfo");
 
-                profile.className = "text-center mt-3";
 
-                profile.innerHTML = `
-                    <img src="${data.avatar_url}" 
-                        alt="GitHub Avatar"
-                        width="70"
-                        height="70"
-                        style="border-radius: 50%;">
+    if (username === "") {
 
-                    <h5 class="mt-2">${data.name || data.login}</h5>
+        result.style.display = "block";
 
-                    <p class="mb-1">@${data.login}</p>
+        result.innerHTML =
+            '<p class="text-danger">Please enter a GitHub username.</p>';
 
-                    <p class="mb-1">
-                        Followers: ${data.followers}
-                    </p>
-
-               <p>
-            Public Repositories: ${data.public_repos}
-       </p>
-    `;
-
-    loginForm.appendChild(profile);
-
-const continueButton = document.createElement("button");
-
-continueButton.textContent = "Continue";
-
-continueButton.className = "btn btn-success mt-2";
-
-continueButton.addEventListener("click", function () {
-
-    welcomeScreen.style.display = "none";
-
-});
-
-loginForm.appendChild(continueButton);            
-        } catch (error) {
-            alert(error.message);
-        }
-    });
-
-    const logoutBtn = document.getElementById("logoutBtn");
-
-    if (logoutBtn) {
-
-        logoutBtn.addEventListener("click", function () {
-
-            localStorage.removeItem("githubUsername");
-
-            location.reload();
-
-        });
+        return;
 
     }
+
+
+    result.style.display = "block";
+
+    result.innerHTML =
+        "<p>Loading GitHub profile...</p>";
+
+
+    try {
+
+        const response = await fetch(
+            "https://api.github.com/users/" +
+            encodeURIComponent(username)
+        );
+
+
+        if (!response.ok) {
+
+            throw new Error("GitHub user not found.");
+
+        }
+
+
+        const data = await response.json();
+
+
+        // Save username using Local Storage
+        localStorage.setItem(
+            "githubUsername",
+            data.login
+        );
+
+
+        result.innerHTML = `
+
+            <img src="${data.avatar_url}" alt="GitHub Avatar">
+
+            <h5>${data.name || data.login}</h5>
+
+            <p class="mb-1">@${data.login}</p>
+
+            <p class="mb-1">
+                Followers: ${data.followers}
+            </p>
+
+            <p>
+                Public Repositories: ${data.public_repos}
+            </p>
+
+            <button
+                class="btn btn-success"
+                onclick="enterHome()">
+
+                Continue
+
+            </button>
+
+        `;
+
+    }
+
+    catch (error) {
+
+        result.innerHTML =
+            '<p class="text-danger">' +
+            error.message +
+            '</p>';
+
+    }
+
+}
+
+
+// Continue as guest
+function continueAsGuest() {
+
+    enterHome();
+
+}
+
+
+// Continue with saved GitHub account
+function continueSavedUser() {
+
+    enterHome();
+
+}
+
+
+// Use another GitHub account
+function useAnotherAccount() {
+
+    localStorage.removeItem("githubUsername");
+
+    document.getElementById("savedUser").style.display = "none";
+
+    document.getElementById("loginForm").style.display = "block";
+
+}
+
+
+// Enter the main website
+function enterHome() {
+
+    document.getElementById("welcomeScreen").style.display = "none";
+
+    document.getElementById("homeContent").style.display = "block";
+
+}
+
+
+// Logout
+function logout() {
+
+    localStorage.removeItem("githubUsername");
+
+    location.reload();
+
+}
 
 </script>
 
