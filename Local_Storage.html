@@ -1,9 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <title>Local Storage Example</title>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">
+            Web Systems Laboratory
+        </a>
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="activities.html">Activities</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#about">About</a>
+                </li>
+
+                <li class="nav-item ms-lg-2">
+                    <button id="logoutBtn"
+                            class="btn btn-outline-light btn-sm mt-1">
+                        Logout
+                    </button>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
     <h2>Save User Preferences</h2>
     <label for="username">Enter Name:</label>
     <input type="text" id="username">
@@ -24,5 +63,16 @@
             document.getElementById("display").innerText = name ? "Welcome, " + name : "No data saved!";
         }
     </script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+function logout() {
+    localStorage.removeItem("githubUsername");
+    location.href = "index.html";
+}
+
+document.getElementById("logoutBtn").onclick = logout;
+</script>
+
+
 </body>
 </html>
