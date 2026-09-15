@@ -5,6 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Week 6 Laboratory</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+    body {
+            margin: 0;
+    }
+
+        #welcomeScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #111;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 9999;
+    }
+
+        #welcomeScreen button {
+            width: 220px;
+            margin-top: 10px;
+    }
+
+        #loginForm {
+            width: 300px;
+    }
+
+</style>
 </head>
     <script src="js/bootstrap.bundle.min.js"></script>
 <body>
@@ -108,18 +140,19 @@
         </button>
     <div id="loginForm" style="display: none;">
 
-        <input
-            type="text"
-            id="githubUsername"
-            class="form-control mt-3"
-            placeholder="Enter GitHub username"
-        >
+    <input
+        type="text"
+        id="githubUsername"
+        class="form-control mt-3"
+        placeholder="Enter GitHub username"
+    >
 
-        <button id="submitGithubBtn" class="btn btn-dark mt-2">
-            Continue
-        </button>
+    <button id="submitGithubBtn" class="btn btn-dark mt-2">
+        Continue
+    </button>
 
     </div>
+
 
 </div>
     </html>
