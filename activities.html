@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Activities - Web Systems Laboratory</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .activity-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+        }
+
+        footer {
+            background-color: #212529;
+            color: white;
+            padding: 40px 20px;
+            margin-top: 50px;
+        }
+
+        footer a {
+            color: #adb5bd;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+
+            <a class="navbar-brand fw-bold" href="index.html">
+                Web Systems Laboratory
+            </a>
+
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="activities.html">
+                            Activities
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#about">
+                            About
+                        </a>
+                    </li>
+
+                    <li class="nav-item ms-lg-2">
+                        <button id="logoutBtn"
+                                class="btn btn-outline-light btn-sm mt-1">
+                            Logout
+                        </button>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Main Content -->
+    <main>
+
+        <section class="py-5">
+
+            <div class="container">
+
+                <h1 class="text-center fw-bold mb-3">
+                    Laboratory Activities
+                </h1>
+
+                <p class="text-center text-muted mb-5">
+                    Explore the activities completed throughout the Web Systems Laboratory.
+                </p>
+
+
+                <!-- Week 1 -->
+                <h2 class="fw-bold mb-4">
+                    Week 1
+                </h2>
+
+                <div class="row g-4 mb-5">
+
+                    <div class="col-md-6 col-lg-4">
+
+                        <div class="card activity-card h-100">
+
+                            <div class="card-body">
+
+                                <h3 class="card-title">
+                                    Week 1 Laboratory
+                                </h3>
+
+                                <p class="card-text">
+                                    HTML5 laboratory activity and webpage setup.
+                                </p>
+
+                                <a href="Week1_Setup/index.html"
+                                   class="btn btn-dark">
+                                    Open Activity
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <h5>Web Systems Laboratory</h5>
+
+                    <p>
+                        Laboratory activities completed throughout the semester.
+                    </p>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <h5>Quick Links</h5>
+
+                    <p>
+                        <a href="index.html">Home</a><br>
+                        <a href="activities.html">Activities</a><br>
+                        <a href="index.html#about">About</a>
+                    </p>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <h5>Technologies</h5>
+
+                    <ul>
+                        <li>HTML5</li>
+                        <li>CSS3</li>
+                        <li>JavaScript</li>
+                        <li>Bootstrap</li>
+                        <li>Web APIs</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <p class="text-center mb-0">
+                © 2026 Web Systems Laboratory
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+        function logout() {
+            localStorage.removeItem("githubUsername");
+            sessionStorage.removeItem("loggedIn");
+            location.href = "index.html";
+        }
+
+        document.getElementById("logoutBtn").onclick = logout;
+
+    </script>
+
+</body>
+
+</html>
