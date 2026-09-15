@@ -98,17 +98,28 @@
     </body>
     <div id="welcomeScreen">
 
-    <h1>Welcome to Week 6</h1>
+        <h1>Welcome to Week 6</h1>
+            <p>Web Systems Laboratory</p>
+            <button id="githubLoginBtn" class="btn btn-dark">
+                Login with GitHub
+            </button>
+            <button id="guestBtn" class="btn btn-secondary">
+                Continue as Guest
+        </button>
+    <div id="loginForm" style="display: none;">
 
-    <p>Web Systems Laboratory</p>
+        <input
+            type="text"
+            id="githubUsername"
+            class="form-control mt-3"
+            placeholder="Enter GitHub username"
+        >
 
-    <button id="githubLoginBtn" class="btn btn-dark">
-        Login with GitHub
-    </button>
+        <button id="submitGithubBtn" class="btn btn-dark mt-2">
+            Continue
+        </button>
 
-    <button id="guestBtn" class="btn btn-secondary">
-        Continue as Guest
-    </button>
+    </div>
 
 </div>
     </html>
